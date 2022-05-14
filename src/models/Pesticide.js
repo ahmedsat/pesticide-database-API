@@ -50,9 +50,7 @@ const PesticideSchema = new mongoose.Schema({
     type: Number,
   },
 
-  MRL: {
-    MRLSchema,
-  },
+  MRL: MRLSchema,
 
   PesticideClass: {
     type: String,
