@@ -56,7 +56,23 @@ const updatePesticide = async (req, res) => {
 };
 
 const deletePesticide = async (req, res) => {
-  res.send("delete pesticide");
+  try {
+    const pesticide = await Pesticide.findOneAndDelete({
+      registrationsNumber: req.params.registrationNumber,
+    });
+    if (!pesticide) {
+      throw new notFoundError(
+        `pesticide with registration number ${req.params.registrationNumber} not found`
+      );
+    }
+    res.status(StatusCodes.OK).json({
+      success: true,
+      data: pesticide,
+    });
+  } catch (error) {
+    console.log(error);
+    throw new customError(error.message);
+  }
 };
 
 module.exports = {
