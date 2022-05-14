@@ -16,17 +16,23 @@ PATCH /api/v1/pesticides/:registration_number : update a pesticide in the databa
 DELETE /api/v1/pesticides/:registration_number : delete a pesticide from the database .
 ```
 
-## future routes
+## features of this API:
 
-future routes are not implemented yet.
+* get all pesticides in the database .
+* get a pesticide by registration number .
+* add a new pesticide to the database .
+* update a pesticide in the database .
+* delete a pesticide from the database .
 
-``` HTTP
-GET /api/v1/pesticides/:registration_number/:language : get a pesticide by registration number and language .
-```
 ## future features
 
-* [ ] pagination
-* [ ] search by name
-* [ ] search by chemical name
-* [ ] search by target
+* pagination
+* search by name
+* search by chemical name
+* search by target
 
+## future improvements
+
+* [ ] add a language to the database
+* [ ] use authentication
+* [ ] use authorization
