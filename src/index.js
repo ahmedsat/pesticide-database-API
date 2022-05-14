@@ -7,6 +7,8 @@ const express = require("express");
 const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
 
+const connectDB = require("./database/connectDB");
+
 // require routes
 const pesticideRouter = require("./routers/pesticide");
 
@@ -25,6 +27,7 @@ app.use(errorHandlerMiddleware);
 
 const start = async () => {
   try {
+    await connectDB();
     app.listen(port, () =>
       console.log(`Server is listening on port ${port}...`)
     );
