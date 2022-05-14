@@ -2,14 +2,14 @@
 const express = require("express");
 const router = express.Router();
 const {
-  getPesticide,
+  getAllPesticide,
   getPesticideById,
   createPesticide,
   updatePesticide,
   deletePesticide,
 } = require("../controllers/pesticide");
 
-router.route("/").get(getPesticide).post(createPesticide);
+router.route("/").get(getAllPesticide).post(createPesticide);
 router
   .route("/:id")
   .get(getPesticideById)

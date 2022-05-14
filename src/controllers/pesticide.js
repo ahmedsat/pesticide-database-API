@@ -1,7 +1,17 @@
-// pesticide controller
-
-const getPesticide = async (req, res) => {
-  res.send("get all pesticides");
+const Pesticide = require("../models/Pesticide");
+const { StatusCodes } = require("http-status-codes");
+const { customError, badRequestError, notFoundError } = require("../errors");
+const getAllPesticide = async (req, res) => {
+  try {
+    const pesticides = await Pesticide.find();
+    res.status(StatusCodes.OK).json({
+      success: true,
+      data: pesticides,
+    });
+  } catch (error) {
+    console.log(error);
+    throw new customError(error.message);
+  }
 };
 
 const getPesticideById = async (req, res) => {
@@ -21,7 +31,7 @@ const deletePesticide = async (req, res) => {
 };
 
 module.exports = {
-  getPesticide,
+  getAllPesticide,
   getPesticideById,
   createPesticide,
   updatePesticide,
