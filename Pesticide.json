@@ -1,0 +1,27 @@
+{
+  "Pesticides": [
+    {
+      "registrationsNumber": 2713,
+      "tradeName": "terminator",
+      "activeIngredients": [
+        {
+          "name": "Thiamethoxam",
+          "concentration": "25%"
+        }
+      ],
+      "dosage": "20mg/100l",
+      "concentration": "25%",
+      "toxicity": "U",
+      "PHI": 45,
+      "MRL": {
+        "EPA": 0.02,
+        "EU": 0.05,
+        "Codex": null
+      },
+      "PesticideClass": "insecticides",
+      "targets": [
+        "aphids"
+      ]
+    }
+  ]
+}

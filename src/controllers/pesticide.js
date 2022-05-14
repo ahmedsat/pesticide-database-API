@@ -19,7 +19,20 @@ const getPesticideById = async (req, res) => {
 };
 
 const createPesticide = async (req, res) => {
-  res.send("create pesticide");
+  try {
+    const pesticide = await Pesticide.create(req.body);
+    res.status(StatusCodes.CREATED).json({ success: true, data: pesticide });
+  } catch (error) {
+    console.log(error);
+    if (error.name === "ValidationError") {
+      throw new badRequestError(error.message);
+    }
+    if (error.code === 11000) {
+      throw new badRequestError("registration number must be unique");
+    }
+
+    throw new customError(error.message);
+  }
 };
 
 const updatePesticide = async (req, res) => {

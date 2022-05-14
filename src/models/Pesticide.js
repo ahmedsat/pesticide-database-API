@@ -27,15 +27,13 @@ const PesticideSchema = new mongoose.Schema({
   registrationsNumber: {
     type: Number,
     required: true,
-    unique: true,
+    unique: [true, "registration number must be unique"],
   },
   tradeName: {
     type: String,
     required: true,
   },
-  brandName: {
-    type: String,
-  },
+
   activeIngredients: [ActiveIngredientSchema],
   dosage: {
     type: String,
@@ -44,7 +42,7 @@ const PesticideSchema = new mongoose.Schema({
     type: String,
   },
 
-  toxicologicalClass: {
+  toxicity: {
     type: String,
   },
 
@@ -60,9 +58,7 @@ const PesticideSchema = new mongoose.Schema({
     type: String,
   },
 
-  target: {
-    type: String,
-  },
+  targets: [String],
 });
 
 module.exports = mongoose.model("Pesticide", PesticideSchema);

@@ -1,3 +1,4 @@
+console.clear();
 //? general requirements
 require("dotenv").config();
 require("express-async-errors");
