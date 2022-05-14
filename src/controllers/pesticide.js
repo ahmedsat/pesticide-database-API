@@ -6,6 +6,7 @@ const getAllPesticide = async (req, res) => {
     const pesticides = await Pesticide.find();
     res.status(StatusCodes.OK).json({
       success: true,
+      length: pesticides.length,
       data: pesticides,
     });
   } catch (error) {
@@ -26,6 +27,7 @@ const getOnePesticide = async (req, res) => {
     }
     res.status(StatusCodes.OK).json({
       success: true,
+      length: 1,
       data: pesticide,
     });
   } catch (error) {
@@ -46,13 +48,41 @@ const createPesticide = async (req, res) => {
     if (error.code === 11000) {
       throw new badRequestError("registration number must be unique");
     }
-
     throw new customError(error.message);
   }
 };
 
 const updatePesticide = async (req, res) => {
-  res.send("update pesticide");
+  try {
+    const pesticide = await Pesticide.findOneAndUpdate(
+      {
+        registrationsNumber: req.params.registrationNumber,
+      },
+      req.body,
+      {
+        new: true,
+      }
+    );
+    if (!pesticide) {
+      throw new notFoundError(
+        `pesticide with registration number ${req.params.registrationNumber} not found`
+      );
+    }
+    res.status(StatusCodes.OK).json({
+      success: true,
+      length: 1,
+      data: pesticide,
+    });
+  } catch (error) {
+    console.log(error);
+    if (error.name === "ValidationError") {
+      throw new badRequestError(error.message);
+    }
+    if (error.code === 11000) {
+      throw new badRequestError("registration number must be unique");
+    }
+    throw new customError(error.message);
+  }
 };
 
 const deletePesticide = async (req, res) => {
@@ -67,6 +97,7 @@ const deletePesticide = async (req, res) => {
     }
     res.status(StatusCodes.OK).json({
       success: true,
+      length: 1,
       data: pesticide,
     });
   } catch (error) {
