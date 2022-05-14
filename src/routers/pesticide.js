@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const {
   getAllPesticide,
-  getPesticideById,
+  getOnePesticide,
   createPesticide,
   updatePesticide,
   deletePesticide,
@@ -11,8 +11,8 @@ const {
 
 router.route("/").get(getAllPesticide).post(createPesticide);
 router
-  .route("/:id")
-  .get(getPesticideById)
+  .route("/:registrationNumber")
+  .get(getOnePesticide)
   .patch(updatePesticide)
   .delete(deletePesticide);
 
